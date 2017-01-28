@@ -5,8 +5,11 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -73,10 +76,12 @@ namespace ProjectRome
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(Views.TempPage), e.Arguments);
+                    rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
                 }
+                SetTitlebar();
                 // Ensure the current window is active
                 Window.Current.Activate();
+
             }
         }
 
@@ -114,15 +119,17 @@ namespace ProjectRome
                 Window.Current.Content = rootFrame;
             }
 
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(Views.TempPage),comments);
-                }
-                // Ensure the current window is active
-                Window.Current.Activate();
+            if (rootFrame.Content == null)
+            {
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                rootFrame.Navigate(typeof(Views.MainPage),comments);
+            }
+            SetTitlebar();
+            // Ensure the current window is active
+            Window.Current.Activate();
+
         }
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
@@ -147,7 +154,21 @@ namespace ProjectRome
                 Window.Current.Content = rootFrame;
             }
             rootFrame.Navigate(typeof(Views.TempPage), args.ShareOperation);
+            SetTitlebar();
             Window.Current.Activate();
+        }
+
+        private void SetTitlebar()
+        {
+            // Make the buttons transparent
+            ApplicationViewTitleBar titlebar = ApplicationView.GetForCurrentView().TitleBar;
+            titlebar.ButtonBackgroundColor = Colors.Transparent;
+            titlebar.ButtonInactiveBackgroundColor = Colors.Transparent;
+
+            // Extend the normal window to the Titlebar for the blur to reach there too
+            CoreApplicationViewTitleBar coreTitlebar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitlebar.ExtendViewIntoTitleBar = true;
+            
         }
     }
 }

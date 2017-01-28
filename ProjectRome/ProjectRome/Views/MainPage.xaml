@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="ProjectRome.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjectRome.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:ProjectRome.Common"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <common:BackDrop BlurAmount="10" 
+                         TintColor="DarkSlateGray"
+                         Canvas.ZIndex="1"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"/>
+
+        <!-- Select type -->
+        <StackPanel Canvas.ZIndex="2"
+                    Visibility="Collapsed"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Border BorderBrush="White"
+                    BorderThickness="0,0,0,1"
+                    Padding="0,6">
+                <TextBlock Text="Warp something!"
+                       Style="{ThemeResource SubheaderTextBlockStyle}"/>
+            </Border>
+
+            <ListView Margin="0,4,0,0"
+                      HorizontalContentAlignment="Center">
+
+                <ListViewItem HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE167;"
+                                   FontFamily="Segoe MDL2 Assets" 
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="Link"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   Margin="12,0,0,0"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+
+        </StackPanel>
+        <!-- END OF Select type -->
+        
+        <!-- Old shit -->
+        <Button x:Name="btnWarpLink"
+                Visibility="Visible"
+                Canvas.ZIndex="2"
+                Background="Transparent"
+                HorizontalAlignment="Center">
+            <Button.Transitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Button.Transitions>
+            <Grid>
+                <Ellipse Width="96"
+                             Height="96"
+                             Fill="{ThemeResource SystemControlBackgroundAccentBrush}"/>
+                <TextBlock Text="&#xE167;"
+                               Style="{ThemeResource HeaderTextBlockStyle}"
+                               FontFamily="Segoe MDL2 Assets"
+                               RequestedTheme="Dark"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+            </Grid>
+        </Button>
+        <!-- END OF Old shit -->
+
+
+    </Grid>
+</Page>
