@@ -10,14 +10,14 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <common:BackDrop BlurAmount="10" 
-                         TintColor="DarkSlateGray"
+                         TintColor="#59000000"
                          Canvas.ZIndex="1"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"/>
 
         <!-- Select type -->
         <StackPanel Canvas.ZIndex="2"
-                    Visibility="Collapsed"
+                    Visibility="Visible"
                     Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
@@ -49,8 +49,7 @@
         <!-- END OF Select type -->
         
         <!-- Old shit -->
-        <Button x:Name="btnWarpLink"
-                Visibility="Visible"
+        <Button Visibility="Collapsed"
                 Canvas.ZIndex="2"
                 Background="Transparent"
                 HorizontalAlignment="Center">
