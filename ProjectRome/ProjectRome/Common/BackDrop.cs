@@ -48,7 +48,7 @@ namespace ProjectRome.Common
             blurVisual = Compositor.CreateSpriteVisual();
             noiseBrush = Compositor.CreateSurfaceBrush();
 
-            CompositionEffectBrush brush = BuildBlurBrush();
+            CompositionEffectBrush brush = BuildFrostBrush();
             brush.SetSourceParameter("source", compositor.CreateHostBackdropBrush());
             blurBrush = brush;
             blurVisual.Brush = blurBrush;
@@ -102,7 +102,8 @@ namespace ProjectRome.Common
             {
                 if (!setUpExpressions)
                 {
-                    blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)value);
+                    // Uncomment for blur brush
+                    //blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)value);
                 }
                 rootVisual.Properties.InsertScalar(BlurAmountProperty, (float)value);
             }
@@ -121,7 +122,8 @@ namespace ProjectRome.Common
             {
                 if (!setUpExpressions)
                 {
-                    blurBrush.Properties.InsertColor("Color.Color", value);
+                    // Uncomment for blur brush
+                    //blurBrush.Properties.InsertColor("Color.Color", value);
                 }
                 rootVisual.Properties.InsertColor(TintColorProperty, value);
                 //((CompositionColorBrush)blurBrush).Color = value;
@@ -160,6 +162,35 @@ namespace ProjectRome.Common
 
 
         //}
+
+        private CompositionEffectBrush BuildFrostBrush()
+        {
+            GaussianBlurEffect frostEffect = new GaussianBlurEffect()
+            {
+                Name = "Frost",
+                BlurAmount = 15.0f,
+                BorderMode = EffectBorderMode.Hard,
+                Source = new ArithmeticCompositeEffect
+                {
+                    MultiplyAmount = 0,
+                    Source1Amount = 0.5f,
+                    Source2Amount = 0.5f,
+                    Source1 = new CompositionEffectSourceParameter("source"),
+                    Source2 = new ColorSourceEffect
+                    {
+                        Color = Color.FromArgb(255, 0, 0, 0)
+                    }
+                }
+            };
+
+            CompositionEffectFactory effectFactory = compositor.CreateEffectFactory(frostEffect);
+            CompositionBackdropBrush backdropBrush = compositor.CreateBackdropBrush();
+            CompositionEffectBrush effectBrush = effectFactory.CreateBrush();
+
+            effectBrush.SetSourceParameter("source", backdropBrush);
+
+            return effectBrush;
+        }
 
         private CompositionEffectBrush BuildBlurBrush()
         {
