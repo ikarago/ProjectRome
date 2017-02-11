@@ -178,7 +178,7 @@ namespace ProjectRome.Common
                     Source1 = new CompositionEffectSourceParameter("source"),
                     Source2 = new ColorSourceEffect
                     {
-                        Color = Color.FromArgb(255, 0, 0, 0)
+                        Color = Color.FromArgb(245, 0, 0, 0)
                     }
                 }
             };
