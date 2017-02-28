@@ -48,7 +48,7 @@ namespace ProjectRome.Common
             blurVisual = Compositor.CreateSpriteVisual();
             noiseBrush = Compositor.CreateSurfaceBrush();
 
-            CompositionEffectBrush brush = BuildFrostBrush();
+            CompositionEffectBrush brush = BuildBlurBrush();
             brush.SetSourceParameter("source", compositor.CreateHostBackdropBrush());
             blurBrush = brush;
             blurVisual.Brush = blurBrush;
@@ -103,7 +103,7 @@ namespace ProjectRome.Common
                 if (!setUpExpressions)
                 {
                     // Uncomment for blur brush
-                    //blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)value);
+                    blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)value);
                 }
                 rootVisual.Properties.InsertScalar(BlurAmountProperty, (float)value);
             }
@@ -123,7 +123,7 @@ namespace ProjectRome.Common
                 if (!setUpExpressions)
                 {
                     // Uncomment for blur brush
-                    //blurBrush.Properties.InsertColor("Color.Color", value);
+                    blurBrush.Properties.InsertColor("Color.Color", value);
                 }
                 rootVisual.Properties.InsertColor(TintColorProperty, value);
                 //((CompositionColorBrush)blurBrush).Color = value;
@@ -169,7 +169,7 @@ namespace ProjectRome.Common
             {
                 Name = "Frost",
                 BlurAmount = 15.0f,
-                BorderMode = EffectBorderMode.Hard,
+                BorderMode = EffectBorderMode.Soft,
                 Source = new ArithmeticCompositeEffect
                 {
                     MultiplyAmount = 0,
@@ -178,7 +178,7 @@ namespace ProjectRome.Common
                     Source1 = new CompositionEffectSourceParameter("source"),
                     Source2 = new ColorSourceEffect
                     {
-                        Color = Color.FromArgb(245, 0, 0, 0)
+                        Color = Color.FromArgb(200, 0, 0, 0)
                     }
                 }
             };

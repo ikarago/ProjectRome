@@ -21,14 +21,15 @@
                     Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <Border BorderBrush="White"
+            <Border BorderBrush="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
                     BorderThickness="0,0,0,1"
-                    Padding="0,6">
+                    Padding="0,12">
                 <TextBlock Text="Warp something!"
-                       Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                           FontWeight="Bold"
+                           Style="{ThemeResource HeaderTextBlockStyle}"/>
             </Border>
 
-            <ListView Margin="0,4,0,0"
+            <ListView Margin="0,12,0,0"
                       HorizontalContentAlignment="Center">
 
                 <ListViewItem HorizontalAlignment="Center">
@@ -40,7 +41,19 @@
                                    VerticalAlignment="Center"/>
                         <TextBlock Text="Link"
                                    Style="{ThemeResource SubtitleTextBlockStyle}"
-                                   Margin="12,0,0,0"/>
+                                   Margin="24,0,0,0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE77F;"
+                                   FontFamily="Segoe MDL2 Assets" 
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="Text"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"
+                                   Margin="24,0,0,0"/>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
